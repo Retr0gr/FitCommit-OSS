@@ -4,10 +4,10 @@ FitCommit is an open-source mobile application designed to help users track thei
 
 ## Features
 
-- **Workout Tracking**: Log your workout sessions with detailed information about exercises, sets, and reps.
-- **Exercise Database**: Access a wide range of exercises to add to your workouts. Users can also contribute by adding new exercises.
-- **Body Measurements Tracking**: Keep track of your body measurements over time to visualize your progress.
-- **Open Source**: FitCommit is open for contributions! Whether it's adding new features, fixing bugs, or improving the UI, your contributions are welcome.
+-   **Workout Tracking**: Log your workout sessions with detailed information about exercises, sets, and reps.
+-   **Exercise Database**: Access a wide range of exercises to add to your workouts. Users can also contribute by adding new exercises.
+-   **Body Measurements Tracking**: Keep track of your body measurements over time to visualize your progress.
+-   **Open Source**: FitCommit is open for contributions! Whether it's adding new features, fixing bugs, or improving the UI, your contributions are welcome.
 
 ## Getting Started
 
@@ -17,7 +17,7 @@ To get started with FitCommit, clone this repository and follow the setup instru
 git clone https://github.com/Retr0gr/FitCommit-OSS.git
 cd FitCommit-OSS
 npm install
-expo start
+npx expo start
 ```
 
 ## Contributing
