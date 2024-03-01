@@ -9,7 +9,7 @@ import Home from './Home';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Hello Marilyn</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -31,7 +31,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'purple',
     alignItems: 'center',
     justifyContent: 'center',
   },
