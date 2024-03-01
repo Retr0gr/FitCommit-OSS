@@ -15,7 +15,8 @@ const Login = () => {
       const user = users.find(user => user[0] === email && user[1] === password);
       if (user) {
         console.log('Login successful');
-        navigation.navigate('Home');
+        // navigation.navigate('Home');
+        navigation.navigate('Register');
       } else {
         console.log('Invalid email or password');
         setErrorMessage('Invalid email or password');

@@ -4,29 +4,20 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './Login';
-import Home from './Home'; 
+// import Home from './Home'; 
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hello Marilyn</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const Stack = createStackNavigator();
-
-const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Home" component={Home} />
+        {/* <Stack.Screen name="Home" component={Home} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}
+
+const Stack = createStackNavigator();
 
 const styles = StyleSheet.create({
   container: {
@@ -36,5 +27,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-// export default App;
