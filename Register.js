@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import RNFS from 'react-native-fs';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import * as FileSystem from 'expo-file-system';
 
-const RegisterPage = ({ navigation }) => {
+const Register = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleRegister = async () => {
     try {
-      const path = RNFS.DocumentDirectoryPath + '/users.csv';
+      const path = `${FileSystem.documentDirectory}users.csv`;
       const userExists = await isUserRegistered(email, path);
       if (userExists) {
         console.log('User already exists');
@@ -26,14 +26,29 @@ const RegisterPage = ({ navigation }) => {
   };
 
   const isUserRegistered = async (email, path) => {
-    const csvData = await RNFS.readFile(path);
-    const users = csvData.split('\n').map(row => row.split(','));
-    return users.some(user => user[0] === email);
+    try {
+      const fileInfo = await FileSystem.getInfoAsync(path);
+      if (!fileInfo.exists) {
+        console.log('File does not exist');
+        return false;
+      }
+      const csvData = await FileSystem.readAsStringAsync(path);
+      const users = csvData.split('\n').map(row => row.split(','));
+      return users.some(user => user[0] === email);
+    } catch (error) {
+      console.error('Error checking user registration:', error);
+      return false;
+    }
   };
-
+  
   const saveUser = async (email, password, path) => {
-    const userData = `${email},${password}\n`;
-    await RNFS.appendFile(path, userData, 'utf8');
+    try {
+      const userData = `${email},${password}\n`;
+      await FileSystem.appendAsStringAsync(path, userData, { encoding: FileSystem.EncodingType.UTF8 });
+      console.log('User saved successfully');
+    } catch (error) {
+      console.error('Error saving user:', error);
+    }
   };
 
   return (
@@ -113,4 +128,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterPage;
+export default Register;

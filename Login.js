@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import RNFS from 'react-native-fs';
+import * as FileSystem from 'expo-file-system';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -8,8 +8,15 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const path = RNFS.DocumentDirectoryPath + '/users.csv';
-      const csvData = await RNFS.readFile(path);
+      const path = `${FileSystem.documentDirectory}users.csv`;
+      const fileInfo = await FileSystem.getInfoAsync(path);
+      if (!fileInfo.exists) {
+        console.log('File does not exist');
+        Alert.alert('Login Error', 'Login data file is missing or cannot be accessed.');
+        return;
+      }
+      
+      const csvData = await FileSystem.readAsStringAsync(path);
       const users = csvData.split('\n').map(row => row.split(','));
       
       const user = users.find(user => user[0] === email && user[1] === password);
@@ -29,7 +36,7 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>Workout Tracker</Text>
+      <Text style={styles.logo}>FitCommit</Text>
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}
@@ -51,6 +58,9 @@ const Login = () => {
       </View>
       <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
         <Text style={styles.loginText}>LOGIN</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+        <Text style={styles.registerText}>Don't have an account? Register here</Text>
       </TouchableOpacity>
     </View>
   );
@@ -94,6 +104,11 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: 'white',
+  },
+  registerText: {
+    marginTop: 20,
+    color: 'blue',
+    textDecorationLine: 'underline',
   },
 });
 
