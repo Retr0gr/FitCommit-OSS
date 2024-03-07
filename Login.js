@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -12,7 +12,7 @@ const Login = () => {
       const fileInfo = await FileSystem.getInfoAsync(path);
       if (!fileInfo.exists) {
         console.log('File does not exist');
-        Alert.alert('Login Error', 'Login data file is missing or cannot be accessed.');
+        setErrorMessage('Login Error', 'Login data file is missing or cannot be accessed.');
         return;
       }
       
@@ -23,7 +23,7 @@ const Login = () => {
       if (user) {
         console.log('Login successful');
         // navigation.navigate('Home');
-        navigation.navigate('Register');
+        props.navigation.navigate('Register');
       } else {
         console.log('Invalid email or password');
         setErrorMessage('Invalid email or password');
