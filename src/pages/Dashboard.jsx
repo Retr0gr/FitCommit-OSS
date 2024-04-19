@@ -1,26 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const WorkoutPlanItem = ({ title, description }) => {
-  return (
-    <View style={styles.workoutPlanItem}>
-      <Text style={styles.workoutPlanTitle}>{title}</Text>
-      <Text style={styles.workoutPlanDescription}>{description}</Text>
-    </View>
-  );
-};
-
 const MainDashboard = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Workout Plan</Text>
-      <WorkoutPlanItem title="Monday" description="Chest and Triceps" />
-      <WorkoutPlanItem title="Tuesday" description="Back and Biceps" />
-      <WorkoutPlanItem title="Wednesday" description="Legs" />
-      <WorkoutPlanItem title="Thursday" description="Shoulders" />
-      <WorkoutPlanItem title="Friday" description="Rest day" />
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Start Workout</Text>
+      <Text style={[styles.header, styles.buttonText]}>Welcome User!</Text>
+      <TouchableOpacity style={[styles.button, styles.primaryButton]}>
+        <Text style={styles.buttonText}>Create New Workout Template</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={[styles.button, styles.primaryButton]}>
+        <Text style={styles.buttonText}>Start New Workout</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={[styles.button, styles.primaryButton]}>
+        <Text style={styles.buttonText}>See Workout History</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={[styles.button, styles.primaryButton]}>
+        <Text style={styles.buttonText}>See Statistics</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={[styles.button, styles.logoutButton]}>
+        <Text style={styles.buttonText}>Logout</Text>
       </TouchableOpacity>
     </View>
   );
@@ -31,36 +29,30 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#80BCBD',
   },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
   },
-  workoutPlanItem: {
-    backgroundColor: '#fff',
-    padding: 20,
-    marginBottom: 10,
-    borderRadius: 5,
-    width: '80%',
-  },
-  workoutPlanTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  workoutPlanDescription: {
-    fontSize: 16,
-  },
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: '#D5F0C1',
     padding: 15,
     borderRadius: 10,
-    marginTop: 20,
+    marginTop: 10,
+    width: '80%',
+    alignItems: 'center',
+  },
+  primaryButton: {
+    backgroundColor: '#AAD9BB',
+    marginBottom: 10,
+  },
+  logoutButton: {
+    backgroundColor: '#F9F7C9',
   },
   buttonText: {
-    color: '#fff',
+    color: '#444',
     fontSize: 18,
     fontWeight: 'bold',
   },
