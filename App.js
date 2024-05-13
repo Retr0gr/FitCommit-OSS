@@ -11,7 +11,7 @@ import MainDashboard from './src/pages/Dashboard';
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='MainDashboard'>
+      <Stack.Navigator initialRouteName='Login'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="MainDashboard" component={MainDashboard} /> 
