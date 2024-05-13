@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: "#80BCBD",
   },
   name: {
     fontSize: 24,
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   card: {
-    backgroundColor: "#f0e4ff",
+    backgroundColor: "#F9F7C9",
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,

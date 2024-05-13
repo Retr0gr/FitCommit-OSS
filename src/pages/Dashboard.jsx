@@ -6,12 +6,15 @@ const MainDashboard = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={[styles.header, styles.buttonText]}>Welcome!</Text>
       <TouchableOpacity
-        onPress={() => navigation.navigate("Login")}
+        onPress={() => navigation.navigate("Workout Creator")}
         style={[styles.button, styles.primaryButton]}
       >
         <Text style={styles.buttonText}>Create New Workout Template</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.primaryButton]}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Workout List")}
+        style={[styles.button, styles.primaryButton]}
+      >
         <Text style={styles.buttonText}>Start New Workout</Text>
       </TouchableOpacity>
       <TouchableOpacity style={[styles.button, styles.primaryButton]}>

@@ -33,7 +33,7 @@ const Login = ({ navigation }) => {
       );
       if (user) {
         console.log("Login successful");
-        navigation.navigate("MainDashboard");
+        navigation.navigate("Main Dashboard");
       } else {
         console.log("Invalid email or password");
       }

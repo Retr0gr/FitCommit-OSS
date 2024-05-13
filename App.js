@@ -15,13 +15,13 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Workout Creator">
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Workout Creator" component={WorkoutCreator} />
         <Stack.Screen name="Workouts List" component={WorkoutsListScreen} />
         <Stack.Screen name="Workout Details" component={WorkoutDetailScreen} />
         <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="MainDashboard" component={MainDashboard} />
+        <Stack.Screen name="Main Dashboard" component={MainDashboard} />
       </Stack.Navigator>
     </NavigationContainer>
   );

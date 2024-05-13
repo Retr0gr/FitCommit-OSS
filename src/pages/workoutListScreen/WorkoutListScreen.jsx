@@ -48,7 +48,7 @@ export default function WorkoutsListScreen({ navigation }) {
             <Button
               title="Delete"
               onPress={() => deleteWorkout(item.key)}
-              color="#ff6347" // Optional: style the button with a color
+              color="#ff6347"
             />
           </View>
         )}
@@ -62,12 +62,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 20,
+    backgroundColor: "#80BCBD",
   },
   item: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#f9c2ff",
+    backgroundColor: "#D5F0C1",
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,

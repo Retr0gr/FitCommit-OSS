@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   View,
   TextInput,
+  TouchableOpacity,
   Button,
   Text,
   ScrollView,
@@ -65,7 +66,9 @@ export default function WorkoutCreator({ navigation }) {
         onChangeText={setSets}
         style={styles.input}
       />
-      <Button title="Add Exercise" onPress={addExercise} />
+      <TouchableOpacity style={styles.button} onPress={addExercise}>
+        <Text>Add Exercice</Text>
+      </TouchableOpacity>
       {exercises.map((exercise, index) => (
         <View key={index} style={styles.card}>
           <Text>
@@ -73,11 +76,15 @@ export default function WorkoutCreator({ navigation }) {
           </Text>
         </View>
       ))}
-      <Button title="Save Workout" onPress={saveWorkout} />
-      <Button
-        title="Go to Workouts List"
+      <TouchableOpacity style={styles.button} onPress={saveWorkout}>
+        <Text>Save Workout</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.goBackButton}
         onPress={() => navigation.navigate("Workouts List")}
-      />
+      >
+        <Text>Go to Workouts List</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 }
@@ -85,16 +92,38 @@ export default function WorkoutCreator({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
+    backgroundColor: "#80BCBD",
   },
   input: {
     height: 40,
     marginVertical: 12,
     borderWidth: 1,
     padding: 10,
+    backgroundColor: "#D5F0C1",
   },
   card: {
-    backgroundColor: "#f9c2ff",
+    backgroundColor: "#D5F0C1",
     padding: 20,
     marginVertical: 8,
+  },
+  button: {
+    backgroundColor: "#D5F0C1",
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 10,
+
+    alignItems: "center",
+  },
+  goBackButton: {
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 10,
+    alignItems: "center",
+    backgroundColor: "#F9F7C9",
+  },
+  buttonText: {
+    color: "#444",
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });
