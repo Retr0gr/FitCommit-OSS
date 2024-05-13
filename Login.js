@@ -21,15 +21,7 @@ const Login = ({ navigation }) => {
       const path = `${FileSystem.documentDirectory}users.csv`;
       const fileInfo = await FileSystem.getInfoAsync(path);
       if (!fileInfo.exists) {
-<<<<<<< HEAD
-        console.log("File does not exist");
-        setErrorMessage(
-          "Login Error",
-          "Login data file is missing or cannot be accessed."
-        );
-=======
         console.log('File does not exist');
->>>>>>> 512667cc1f0165dbe2adaeced56cd7973b5bafcd
         return;
       }
 
