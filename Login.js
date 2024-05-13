@@ -13,15 +13,23 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
+    FileSystem.writeAsStringAsync(
+	FileSystem.documentDirectory + "users.csv",
+	"email,password\nemail.com,nopass"
+    );
     try {
       const path = `${FileSystem.documentDirectory}users.csv`;
       const fileInfo = await FileSystem.getInfoAsync(path);
       if (!fileInfo.exists) {
+<<<<<<< HEAD
         console.log("File does not exist");
         setErrorMessage(
           "Login Error",
           "Login data file is missing or cannot be accessed."
         );
+=======
+        console.log('File does not exist');
+>>>>>>> 512667cc1f0165dbe2adaeced56cd7973b5bafcd
         return;
       }
 
@@ -32,16 +40,13 @@ const Login = ({ navigation }) => {
         (user) => user[0] === email && user[1] === password
       );
       if (user) {
-        console.log("Login successful");
-        // navigation.navigate('Home');
-        props.navigation.navigate("Register");
+        console.log('Login successful');
+        navigation.navigate('MainDashboard');
       } else {
-        console.log("Invalid email or password");
-        setErrorMessage("Invalid email or password");
+        console.log('Invalid email or password');
       }
     } catch (error) {
-      console.error("Error reading CSV file:", error);
-      setErrorMessage("Error reading CSV file");
+      console.error('Error reading CSV file:', error);
     }
   };
 
