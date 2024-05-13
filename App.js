@@ -13,7 +13,8 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Workout_creator">
+      <Stack.Navigator initialRouteName="Workout Creator">
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Workout Creator" component={WorkoutCreator} />
         <Stack.Screen name="Workouts List" component={WorkoutsListScreen} />
         <Stack.Screen name="Workout Details" component={WorkoutDetailScreen} />
