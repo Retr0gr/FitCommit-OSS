@@ -14,14 +14,14 @@ const Login = ({ navigation }) => {
 
   const handleLogin = async () => {
     FileSystem.writeAsStringAsync(
-	    FileSystem.documentDirectory + "users.csv",
-	    "email,password\nemail.com,nopass"
+      FileSystem.documentDirectory + "users.csv",
+      "email,password\nemail.com,nopass"
     );
     try {
       const path = `${FileSystem.documentDirectory}users.csv`;
       const fileInfo = await FileSystem.getInfoAsync(path);
       if (!fileInfo.exists) {
-        console.log('File does not exist');
+        console.log("File does not exist");
         return;
       }
 
@@ -32,13 +32,13 @@ const Login = ({ navigation }) => {
         (user) => user[0] === email && user[1] === password
       );
       if (user) {
-        console.log('Login successful');
-        navigation.navigate('MainDashboard');
+        console.log("Login successful");
+        navigation.navigate("MainDashboard");
       } else {
-        console.log('Invalid email or password');
+        console.log("Invalid email or password");
       }
     } catch (error) {
-      console.error('Error reading CSV file:', error);
+      console.error("Error reading CSV file:", error);
     }
   };
 
