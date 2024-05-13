@@ -14,8 +14,8 @@ const Login = ({ navigation }) => {
 
   const handleLogin = async () => {
     FileSystem.writeAsStringAsync(
-	FileSystem.documentDirectory + "users.csv",
-	"email,password\nemail.com,nopass"
+	    FileSystem.documentDirectory + "users.csv",
+	    "email,password\nemail.com,nopass"
     );
     try {
       const path = `${FileSystem.documentDirectory}users.csv`;
