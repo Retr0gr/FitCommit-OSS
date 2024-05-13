@@ -22,7 +22,6 @@ const Login = ({ navigation }) => {
       const fileInfo = await FileSystem.getInfoAsync(path);
       if (!fileInfo.exists) {
         console.log("File does not exist");
-        console.log(fileInfo);
         return;
       }
 
@@ -34,7 +33,7 @@ const Login = ({ navigation }) => {
       );
       if (user) {
         console.log("Login successful");
-        navigation.navigate("Workout Creator");
+        navigation.navigate("MainDashboard");
       } else {
         console.log("Invalid email or password");
       }
