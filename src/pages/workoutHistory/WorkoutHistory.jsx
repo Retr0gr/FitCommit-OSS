@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function WorkoutsListScreen({ navigation }) {
+export default function WorkoutHistory({ navigation }) {
   const [workouts, setWorkouts] = useState([]);
 
   useEffect(() => {
@@ -19,10 +19,12 @@ export default function WorkoutsListScreen({ navigation }) {
   const fetchWorkouts = async () => {
     const keys = await AsyncStorage.getAllKeys();
     const items = await AsyncStorage.multiGet(keys);
-    const workouts = items.map((item) => ({
-      key: item[0],
-      ...JSON.parse(item[1]),
-    }));
+    const workouts = items
+      .map((item) => ({
+        key: item[0],
+        ...JSON.parse(item[1]),
+      }))
+      .sort((a, b) => new Date(b.dateSaved) - new Date(a.dateSaved)); // Sorting by date descending
     setWorkouts(workouts);
   };
 
@@ -37,32 +39,24 @@ export default function WorkoutsListScreen({ navigation }) {
         data={workouts}
         renderItem={({ item }) => (
           <View style={styles.item}>
-            <TouchableOpacity
-              style={styles.touchable}
-              onPress={() =>
-                navigation.navigate("Workout Details", { workout: item })
-              }
-            >
-              <Text style={styles.title}>{item.name}</Text>
+            <TouchableOpacity style={styles.touchable}>
+              <Text style={styles.title}>{`${item.name} (${new Date(
+                item.dateSaved
+              ).toLocaleDateString()} ${new Date(
+                item.dateSaved
+              ).toLocaleTimeString()})`}</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Workout", { workout: item })}
-              style={styles.button}
-            >
-              <Text>START</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
+            <Button
+              title="Delete"
               onPress={() => deleteWorkout(item.key)}
-              style={styles.deleteButton}
-            >
-              <Text style={styles.deleteButtonText}>DELETE</Text>
-            </TouchableOpacity>
+              color="#ff6347"
+            />
           </View>
         )}
         keyExtractor={(item) => item.key}
       />
       <TouchableOpacity
-        style={styles.button}
+        style={styles.goBackButton}
         onPress={() => navigation.navigate("Main Dashboard")}
       >
         <Text>Main Dashboard</Text>
@@ -87,23 +81,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   touchable: {
-    flex: 1, // Allows the text to fill the space
+    flex: 1,
   },
   title: {
-    fontSize: 24,
+    fontSize: 18,
   },
-  button: {
+  goBackButton: {
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 10,
+    alignItems: "center",
     backgroundColor: "#F9F7C9",
-    borderRadius: 10,
-    padding: 10,
-  },
-  deleteButton: {
-    backgroundColor: "#ff6347",
-    borderRadius: 10,
-    padding: 10,
-    marginLeft: 10,
-  },
-  deleteButtonText: {
-    color: "white",
   },
 });
